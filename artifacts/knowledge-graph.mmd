@@ -1,0 +1,22 @@
+graph TB
+  feature-1["AI Property Search"] 
+  feature-2["Listing Management"] 
+  feature-3["Hidden Address System"] 
+  feature-4["Property Valuation"] 
+  user-buyer["Người mua/Nhà đầu tư"] 
+  user-renter["Người thuê"] 
+  user-homeowner["Chủ sở hữu"] 
+  user-broker["Môi giới BĐS"] 
+
+  user-buyer --uses--> feature-1
+  user-renter --uses--> feature-1
+  user-broker --uses--> feature-1
+  user-homeowner --uses--> feature-2
+  user-broker --uses--> feature-2
+  user-homeowner --uses--> feature-3
+  user-buyer --uses--> feature-3
+  user-buyer --uses--> feature-4
+  user-homeowner --uses--> feature-4
+  user-broker --uses--> feature-4
+  feature-2 --depends--> feature-1
+  feature-3 --depends--> feature-2

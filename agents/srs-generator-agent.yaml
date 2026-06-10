@@ -1,0 +1,59 @@
+name: "SRS Generator Agent"
+description: "Tự động phân tích hệ thống và sinh SRS + Knowledge Graph"
+
+# Kết hợp múi agents
+team:
+  - agent: "mary"      # Analyst - Phân tích domain
+    role: "Research Lead"
+    tasks:
+      - "Phân tích moso.vn"
+      - "Xác định user personas"
+      - "Liệt kê features & requirements"
+  
+  - agent: "john"      # PM - Tạo PRD
+    role: "Requirements Manager"
+    tasks:
+      - "Tạo PRD từ dữ liệu phân tích"
+      - "Phân rã features thành user stories"
+      - "Xác định dependencies"
+  
+  - agent: "paige"     # Tech Writer - Documentation
+    role: "Documentation"
+    tasks:
+      - "Sinh SRS document"
+      - "Tạo Knowledge Graph diagrams"
+      - "Validate documentation"
+
+# Workflow
+workflow:
+  steps:
+    - step: 1
+      name: "System Analysis"
+      agent: "mary"
+      input: "URL hoặc code của moso.vn"
+      output: "analysis.json"
+    
+    - step: 2
+      name: "Requirements Definition"
+      agent: "john"
+      input: "analysis.json"
+      output: "requirements.json"
+    
+    - step: 3
+      name: "Knowledge Graph Generation"
+      agent: "custom-kg"
+      input: "requirements.json"
+      output: "knowledge-graph.json"
+    
+    - step: 4
+      name: "SRS Documentation"
+      agent: "paige"
+      input: "requirements.json + knowledge-graph.json"
+      output: "SRS.md"
+
+# Configuration
+config:
+  output_directory: "./outputs"
+  format: "markdown"
+  include_diagrams: true
+  kg_visualization: true

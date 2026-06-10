@@ -1,0 +1,78 @@
+{
+  "features": [
+    {
+      "name": "AI Property Search",
+      "description": "Tìm kiếm bất động sản bằng AI với địa chỉ và giá thật",
+      "type": "core",
+      "users_affected": ["buyer", "renter", "broker"],
+      "dependencies": [],
+      "complexity": "high"
+    },
+    {
+      "name": "Listing Management",
+      "description": "Quản lý tin đăng bất động sản",
+      "type": "core",
+      "users_affected": ["homeowner", "broker"],
+      "dependencies": ["AI Property Search"],
+      "complexity": "medium"
+    },
+    {
+      "name": "Hidden Address System",
+      "description": "Hệ thống Ẩn số nhà, chỉ người dùng xác thực mới thấy",
+      "type": "core",
+      "users_affected": ["homeowner", "buyer"],
+      "dependencies": ["Listing Management"],
+      "complexity": "high"
+    },
+    {
+      "name": "Property Valuation",
+      "description": "Định giá bất động sản bằng AI dựa trên lịch sử giá",
+      "type": "core",
+      "users_affected": ["buyer", "homeowner", "broker"],
+      "dependencies": [],
+      "complexity": "high"
+    }
+  ],
+  "personas": [
+    {
+      "name": "Người mua/Nhà đầu tư",
+      "role": "Buyer",
+      "goals": ["Tìm nhà theo giá trị thật", "Tính toán vay"],
+      "pain_points": ["Tin ảo, giá ảo", "Thiếu thông tin địa chỉ"],
+      "features_used": ["AI Property Search", "Property Valuation", "Hidden Address System"]
+    },
+    {
+      "name": "Người thuê",
+      "role": "Renter",
+      "goals": ["Tìm nơi ở hoặc mặt bằng"],
+      "pain_points": ["Khó xác thực chủ nhà"],
+      "features_used": ["AI Property Search"]
+    },
+    {
+      "name": "Chủ sở hữu",
+      "role": "Owner",
+      "goals": ["Đăng bán/cho thuê nhanh chóng"],
+      "pain_points": ["Bị quấy rầy bởi môi giới không uy tín"],
+      "features_used": ["Listing Management", "Hidden Address System", "Property Valuation"]
+    },
+    {
+      "name": "Môi giới BĐS",
+      "role": "Broker",
+      "goals": ["Tiếp cận khách hàng", "Xây dựng thương hiệu"],
+      "pain_points": ["Khó tìm kiếm khách hàng nét"],
+      "features_used": ["Listing Management", "AI Property Search", "Property Valuation"]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Property",
+      "attributes": ["address", "price", "area", "type", "hidden_address"],
+      "relationships": ["ownedBy->Owner", "listedBy->Broker"]
+    },
+    {
+      "name": "User",
+      "attributes": ["name", "role", "verified_status"],
+      "relationships": ["views->Property", "contacts->Owner/Broker"]
+    }
+  ]
+}
