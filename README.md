@@ -31,7 +31,11 @@ moso-srs-planning/
 - IDE hỗ trợ AI (Cursor, Claude Code) hoặc có thể chạy trực tiếp bằng lệnh terminal.
 
 ### Bước 1: Cài đặt dependencies
-Mở terminal tại thư mục `moso-srs-planning` và chạy:
+Đầu tiên, bạn **BẮT BUỘC** phải di chuyển Terminal vào đúng thư mục dự án bằng lệnh:
+```bash
+cd /Users/lam/SourceCodeFromGithub/moso-planning/moso-srs-planning
+```
+Sau đó mới chạy lệnh cài đặt:
 ```bash
 npm install
 ```
