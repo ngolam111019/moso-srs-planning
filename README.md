@@ -31,7 +31,7 @@ Mở Terminal, di chuyển vào thư mục dự án và cài đặt các thư vi
 ```bash
 cd /Users/lam/SourceCodeFromGithub/moso-planning/moso-srs-planning
 npm install
-npx bmad-method install --yes
+npx bmad-method install --yes --tools claude-code
 ```
 
 ### Bước 2: Khởi động AI IDE
