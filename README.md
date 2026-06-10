@@ -27,9 +27,8 @@ moso-srs-planning/
 ## 🚀 Hướng dẫn cài đặt và chạy dự án
 
 ### Bước 1: Cài đặt hệ thống
-Mở Terminal, di chuyển vào thư mục dự án và cài đặt các thư viện cần thiết:
+Mở Terminal tại thư mục dự án và cài đặt các thư viện cần thiết:
 ```bash
-cd /Users/lam/SourceCodeFromGithub/moso-planning/moso-srs-planning
 npm install
 npx bmad-method install --yes --tools claude-code
 ```
