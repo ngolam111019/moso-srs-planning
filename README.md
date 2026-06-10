@@ -26,38 +26,45 @@ moso-srs-planning/
 
 ## 🚀 Hướng dẫn cài đặt và chạy dự án
 
-### Yêu cầu hệ thống
-- Node.js (v20.12 trở lên)
-- IDE hỗ trợ AI (Cursor, Claude Code) hoặc có thể chạy trực tiếp bằng lệnh terminal.
-
-### Bước 1: Cài đặt dependencies
-Đầu tiên, bạn **BẮT BUỘC** phải di chuyển Terminal vào đúng thư mục dự án bằng lệnh:
+### Bước 1: Cài đặt hệ thống
+Mở Terminal, di chuyển vào thư mục dự án và cài đặt các thư viện cần thiết:
 ```bash
 cd /Users/lam/SourceCodeFromGithub/moso-planning/moso-srs-planning
-```
-Sau đó mới chạy lệnh cài đặt:
-```bash
 npm install
+npx bmad-method install --yes
 ```
 
-### Bước 2: Khởi tạo luồng bằng AI Agents
-*Lưu ý quan trọng: Lệnh dưới đây không phải gõ vào Terminal! Bạn cần mở **Khung Chat AI** của IDE (như Cursor, Claude Code, hoặc chính khung chat này của Antigravity) và nhắn tin cho AI:*
-1. Yêu cầu **Mary Agent** (Analyst): Bạn copy và gửi câu này vào khung chat AI: *"Hãy đóng vai Mary Agent và Analyze https://moso.vn/"* (AI sẽ chạy và tạo ra `artifacts/moso-analysis.json`)
-2. Yêu cầu **John Agent** (PM): Bạn copy và gửi câu này vào khung chat AI: *"Hãy đóng vai John Agent và Create PRD from analysis"* (AI sẽ tạo ra `artifacts/requirements.json`)
-
-*(Lưu ý: Đối với repo hiện tại, tôi (AI) đã tạo sẵn các file dữ liệu mô phỏng (mock data) trong thư mục `artifacts/` để bạn có thể chạy bước 3 ngay lập tức)*
-
-### Bước 3: Chạy Pipeline
-Mở **Terminal (Command Line)** và gõ lệnh sau để sinh Knowledge Graph và xuất SRS:
+### Bước 2: Khởi động AI IDE
+Mở thư mục dự án trong một AI IDE (như Cursor, Claude Code, hoặc VS Code có plugin AI):
 ```bash
-node run-pipeline.js
+code .
 ```
 
-### Bước 4: Xem kết quả
-Sau khi pipeline chạy xong (báo `✨ Pipeline Complete!`), bạn xem kết quả bằng cách gõ các lệnh sau vào **Terminal**:
-- **Xem tài liệu SRS:** Mở file trực tiếp trong editor hoặc gõ lệnh `cat artifacts/SRS-moso.md`
-- **Xem Knowledge Graph:** Gõ lệnh `open artifacts/knowledge-graph.html` (nếu dùng Mac) hoặc click đúp vào file HTML đó trong thư mục để mở bằng trình duyệt web.
-- **Knowledge Graph:** Mở file `artifacts/knowledge-graph.html` bằng trình duyệt web để xem giao diện Sơ đồ tri thức có thể tương tác (kéo thả, zoom).
+### Bước 3: Chạy quy trình tạo SRS và Knowledge Graph
+Trong IDE, bạn mở khung chat AI (Agent) và thực hiện tuần tự theo luồng công việc sau:
+
+1. **Phân tích hệ thống:** Nhắn cho AI Agent (Mary) lệnh: 
+   `"Analyze https://moso.vn/"` 
+   *(Hệ thống sẽ dựa vào luật trong `.cursor/rules/moso-analysis.md` để sinh ra `artifacts/moso-analysis.json`)*
+   
+2. **Viết PRD:** Nhắn cho AI Agent (John) lệnh: 
+   `"Create PRD from analysis"`
+   *(Sinh ra file `artifacts/requirements.json`)*
+   
+3. **Sinh Knowledge Graph:** Mở Terminal (trong IDE) và chạy script tự động:
+   ```bash
+   node run-pipeline.js
+   ```
+   *(Script sẽ tự sinh ra biểu đồ Graph dạng `JSON`, `Mermaid`, và `HTML`)*
+   
+4. **Viết SRS:** Nhắn cho AI Agent (Paige) lệnh: 
+   `"Generate SRS documentation"`
+   *(Hệ thống sẽ dùng template và dữ liệu để xuất bản `artifacts/SRS-moso.md` cuối cùng)*
+
+### Bước 4: Kiểm tra kết quả
+Sau khi luồng hoàn tất, hãy kiểm tra thư mục `artifacts/`:
+- **Tương tác Sơ đồ Tri thức:** Chạy lệnh `open artifacts/knowledge-graph.html` trên terminal (hoặc nhấp đúp vào file HTML) để xem giao diện tương tác.
+- **Đọc tài liệu SRS:** Mở xem file `artifacts/SRS-moso.md`.
 
 ## 🛠️ Tùy biến
 - Nếu bạn muốn thay đổi mô hình quan hệ, hãy sửa logic trong `agents/kg-generator.js`.
